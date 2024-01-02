@@ -18,7 +18,6 @@ function connect(){
 
         // subscribe
         stompClient.subscribe("/topic/return-to",function(response){
-            alert("You got a new message")
             showMessage(JSON.parse(response.body))
         })
 
