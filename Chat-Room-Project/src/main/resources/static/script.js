@@ -1,5 +1,4 @@
 let stompClient = null
-
 function sendMessage(){
     let jsonOb={
         name:localStorage.getItem("name"),
@@ -19,6 +18,7 @@ function connect(){
 
         // subscribe
         stompClient.subscribe("/topic/return-to",function(response){
+            alert("You got a new message")
             showMessage(JSON.parse(response.body))
         })
 
@@ -34,6 +34,7 @@ $(document).ready(e=>{
     $("#login").click(()=>{
 
         let name = $("#name-value").val()
+
         localStorage.setItem("name",name)
         $("#name-title").html(`Welcome  <b>${name}</b>`)
 
