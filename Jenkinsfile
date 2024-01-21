@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from Git
+                git url: 'https://github.com/SananKhan001/ChatRoomProject.git'
+            }
+        }
         stage('build') {
             steps {
                 docker build -t chat-app:v1 .
