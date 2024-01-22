@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chat-app # ingress name
+spec:
+  rules:
+  - host: "chat.with.sanan" # host name
+    http:
+      paths:
+      - pathType: Prefix
+        path: / # we can specify path here for path based loadbalancing
+        backend:
+          service:
+            name: chat-app-service # service name
+            port:
+              number: 80 # port of service
