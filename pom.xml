@@ -64,6 +64,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- <configuration>
+				<image>
+					<name>
+						sanan3946/Chat-Room-Project
+					</name>
+				</image>
+				</configuration> -->
 			</plugin>
 		</plugins>
 	</build>
