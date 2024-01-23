@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: chat-app
-    image: chat-app:v1
+    image: sanan3946/chat-app:registery
     ports:
     - containerPort: 8081
