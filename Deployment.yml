@@ -5,7 +5,7 @@ metadata:
   labels:
     app: chat-app
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: chat-app
@@ -19,3 +19,37 @@ spec:
         image: sanan3946/chat-app:registery
         ports:
         - containerPort: 8081
+        volumeMounts:
+        - name: db-connection # name of the volume to be mounted
+          mountPath: /opt # we can give any path here
+        - name: secret-db-connection
+          mountPath: /secret
+        env:
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: test-cm
+              key: db-port
+        - name: FIRST_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: test-cm
+              key: first_name
+        - name: LAST_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: test-cm
+              key: last_name
+        - name: ROLL_NO
+          valueFrom:
+            secretKeyRef:
+              name: my-chat-app-secret
+              key: roll_no
+
+      volumes:
+      - name: db-connection
+        configMap:
+          name: test-cm # name of the config-map
+      - name: secret-db-connection
+        secret:
+          secretName: my-chat-app-secret # name of secret
